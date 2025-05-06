@@ -1,0 +1,563 @@
+/* -------------------------------------------------------
+ * style.css – Global Styles & Utility Framework
+ * GameStop 2.0 · Christian Rodriguez · Apr 27 2025
+ * ----------------------------------------------------- */
+
+/* Google Fonts – Lato family (all weights) */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+
+
+/* =====================================================
+   THEME PALETTE + BACKGROUND
+   -----------------------------------------------------
+   Default  : grey ➜ purple gradient
+   Alt (red): grey ➜ red gradient
+   Activate alt-theme via <body data-theme="red">
+   ==================================================== */
+:root {
+    /* brand + base colors */
+    --mainColor:          #7e3ff2;    /* accent purple              */
+    --mainColor-hover:    #6532c1;    /* darker purple on hover      */
+    --black:              #000000;
+    --white:              #ffffff;
+    --grey-900:           #121212;    /* near-black background       */
+    --grey-100:           #e5e5e5;    /* light grey cards            */
+    --whiteSmoke:         #c4c3ca;    /* light text                  */
+
+    /* layout helpers */
+    --shadow:  0 4px 8px rgba(21,21,21,.2);
+    --maxWidth: 1080px;
+    --gutter:   0.6rem;
+    --radius:   8px;
+
+    /* gradient endpoints */
+    --bg-start: var(--grey-900);
+    --bg-end:   var(--mainColor);
+}
+
+/* Alt-theme overrides (grey ➜ red) */
+[data-theme="red"] {
+    --mainColor:        #c62828;
+    --mainColor-hover:  #9f2020;
+    /* gradient picks up new mainColor */
+    --bg-start: var(--grey-900);
+    --bg-end:   var(--mainColor);
+}
+
+/* =====================================================
+   CSS RESET & BASE STYLES
+   ==================================================== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;          /* predictable sizing */
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 1.6;
+
+    /* app-wide gradient background */
+    background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+    color: var(--whiteSmoke);
+}
+
+a  { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+
+
+/* =====================================================
+   UTILITY HELPERS – small single-purpose classes
+   ==================================================== */
+
+/* layout */
+.container              { max-width: var(--maxWidth); margin-inline: auto; padding-inline: var(--gutter); }
+
+.flex-row               { display: flex; }
+.flex-col               { display: flex; flex-direction: column; }
+.flex-wrap              { flex-wrap: wrap; }
+
+.flex-center            { display: flex; justify-content: center; align-items: center; }
+.justify-between        { justify-content: space-between; }
+.align-center           { align-items: center; }
+
+.row-nav                { flex-direction: row;display: flex; flex-wrap: wrap; }
+.row                    { display: flex; flex-wrap: wrap; }
+.justify-content-between{ justify-content: space-between; }
+.align-items-center     { align-items: center; }
+
+.center-div             { margin-inline: auto; }
+.full-screen            { min-height: 100vh; padding-top: 120px; } /* reserve space for fixed nav */
+
+/* text */
+.text-center            { text-align: center; }
+.text-bold              { font-weight: 700; }
+
+/* spacing (½-rem increment) */
+.mt-1-5 { margin-top:    1.5rem; }
+.mt-1 { margin-top:    .5rem; }
+.mb-1 { margin-bottom: .5rem; }
+.pt-1 { padding-top:   .5rem; }
+.pb-1 { padding-bottom:.5rem; }
+
+/* misc */
+.hide   { display: none !important; }
+.sr-only{ position: absolute; width: 1px; height: 1px; margin: -1px;
+          padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+
+
+/* =====================================================
+   GRID FRAMEWORK – responsive column helpers
+   ==================================================== */
+.grid   { display: grid; gap: var(--gutter); }
+
+.grid-1 { grid-template-columns: repeat(1, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* collapse columns on medium screens */
+@media (max-width: 992px) {
+    .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+/* single-column on small screens */
+@media (max-width: 576px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}
+
+/* span helpers */
+.span-2 { grid-column: span 2; }
+.span-3 { grid-column: span 3; }
+
+
+
+/* =====================================================
+   COMPONENTS – cards / buttons / utility positioning
+   ==================================================== 
+*/
+
+.card {
+    background: var(--grey-100);
+    color: var(--black);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.25rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: .6rem 1.2rem;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    background: var(--mainColor);
+    color: var(--white);
+    cursor: pointer;
+    transition: background .25s ease;
+}
+.btn:hover { background: var(--mainColor-hover); }
+
+/* absolute-center helper (e.g. loader) */
+.abs-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+/* =====================================================
+   NAVIGATION BAR – desktop first, collapses to menu
+   ==================================================== */
+
+/* hide default checkbox (menu toggle) */
+input[type="checkbox"]#click { display: none; }
+
+/* desktop nav */
+nav {
+    width: 100%;
+    position: fixed;   top: 0; left: 0;
+    padding: 25px;
+    background: rgba(0,0,0,.8);
+    z-index: 999;
+}
+
+nav .logo {
+    color: var(--white);
+    font-size: 32px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+nav .logo span { color: var(--mainColor); }
+
+nav .container { padding: 0 25px; }
+
+nav .menu-btn i { display: none; color: var(--white); font-size: 28px; cursor: pointer; }
+
+nav ul          { display: flex; flex-wrap: wrap; align-items: center; }
+nav ul li       { margin: 0 5px; }
+nav ul li a     {
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: all .3s ease;
+}
+nav ul li a:hover,
+nav ul li a.active {
+    color: var(--mainColor);
+    background: var(--white);
+}
+
+/* ----------------------------------------------------
+   NAVBAR SEARCH OPENER  (desktop only)
+   ---------------------------------------------------- */
+#nav-search-opener {
+    width: 240px;
+    padding: .45rem .7rem;
+    font-size: .875rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    color: #333;
+    cursor: text;               /* looks like an input */
+}
+#nav-search-opener:focus {
+    outline: none;
+    border-color: var(--mainColor);
+    box-shadow: 0 0 0 2px rgba(126,63,242,.25);
+}
+
+
+/* ----------------------------------------------------
+   MOBILE SEARCH BUTTON  (visible ≤ 768px)
+   ---------------------------------------------------- */
+.search-btn {
+    display: none;                      /* default hidden */
+    border: none; background: none; 
+    color: var(--white); cursor: pointer;
+}
+.search-btn i { font-size: 28px; }
+
+/* hide the opener on small screens */
+@media (max-width: 542px) {
+    #nav-search-opener { display: none; }
+    .search-btn { display: block; }     /* show on mobile */
+}
+
+/* @media (max-width: 542px) {
+    .search-btn { display: block; }     /* show on mobile */
+/* }  */
+
+
+/* =====================================================
+   FULL-SCREEN SEARCH OVERLAY
+   ----------------------------------------------------- */
+.search-overlay.open { display: flex; } /* overlay visible */
+
+.search-overlay {
+    position: fixed; inset: 0;
+    display: none;              /* hidden by default, shown via JS */
+    background: rgba(0,0,0,.85);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* bump max width from 500px â†’ 600px for a roomier box */
+.overlay-box {
+    position: relative;
+    width: min(90%, 98%);     /* take up to 90% of screen or 600px */
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.4);
+}
+
+.overlay-close {
+    position: absolute;
+    top: .75rem;
+    right: 0.8rem;
+    border: none; 
+    background: none;
+    font-size: 1.5rem; 
+    cursor: pointer;
+}
+
+/* input inside overlay */
+.overlay-search-input {
+    width: 98%;
+    padding: .65rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    color: #333;
+}
+.overlay-search-input:focus {
+    outline: none;
+    border-color: var(--mainColor);
+    box-shadow: 0 0 0 2px rgba(126,63,242,.25);
+}
+
+/* search results inside overlay */
+#overlay-search-results {
+    margin-top: .9rem;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.1);
+    max-height: 250px;
+    overflow-y: auto;
+}
+#overlay-search-results ul { list-style: none; margin: 0; padding: 0; }
+/* #overlay-search-results li {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    justify-content: flex-start;
+} */
+#overlay-search-results li {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    flex-direction: row;
+}
+
+#overlay-search-results li:last-child { border-bottom: none; }
+#overlay-search-results li:hover     { background: #f0f0f0; }
+/*images provided from db*/
+/* #overlay-search-results img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+default images
+#overlay-search-results svg {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+ */
+#overlay-search-results img {
+    width: 160px;
+    height: 62px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+#overlay-search-results svg {
+    width: 160px;
+    height: 62px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+@media (max-width:375px) {
+    #overlay-search-results li {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    justify-content: flex-start;
+    }
+    /*images provided from db*/
+    #overlay-search-results img {
+        width: 112px;
+        height: 40px;
+        object-fit: contain;
+        border-radius: 5px;
+    }
+    
+    /* default images */
+    #overlay-search-results svg {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+}
+
+
+
+#overlay-search-results .srch-header {
+    background: #f9f9f9;
+    padding: 8px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    color: black;
+}
+#overlay-search-results .srch-more {
+    text-align: center;
+    padding: 8px;
+    font-style: italic;
+    color: #007bff;
+    cursor: pointer;
+}
+#overlay-search-results .srch-more:hover { text-decoration: underline; }
+#overlay-search-results .srch-none,
+#overlay-search-results .srch-error {
+    padding: 12px;
+    text-align: center;
+    color: #666;
+}
+#overlay-search-results .srch-error { color: #c00; }
+
+/* ----------------------------------------------------
+   RESPONSIVE VISIBILITY
+   ---------------------------------------------------- */
+@media (max-width:440px){
+    /* hide desktop search; overlay toggle handled in JS */
+    #nav-search-container{display:none;}
+}
+
+
+/* -------- responsive menu -------- */
+@media (max-width: 909px) {
+
+    nav .menu-btn i   { display: block; }
+    nav .container    { padding: 0; }
+
+    /* slide-in vertical menu */
+    nav ul {
+        position: fixed;      top: 85px; left: -100%;
+        width: 100%;          height: 24em;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding-top: 30px;
+        background: #1b1b1b;
+        transition: left .3s ease;
+        z-index: 998;
+    }
+
+    /* reveal when checkbox checked */
+    #click:checked ~ ul { left: 0; }
+
+    nav ul li         { margin: 0; }
+    nav ul li a       {
+        display: inline-block;
+        font-size: 20px;
+        padding: 8px 25px;
+        text-align: center;
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+        background: none;
+        color: var(--mainColor);
+    }
+}
+
+
+/* parent <li> that contains the submenu */
+nav ul li.dropdown            { position: relative; }
+
+/* the clickable label (Home ▼) */
+nav ul li .drop-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+nav ul li .drop-toggle i      { font-size: 1rem; margin-left: .25rem; }
+
+/* hidden submenu (desktop) */
+nav ul li .submenu {
+    display: none;                 /* stays invisible until .open is added */
+    position: absolute;
+    left: 0;
+    top: 100%;                     /* sits directly below parent */
+    background: var(--white);
+    color: var(--black);
+    min-width: 180px;
+    border-radius: var(--radius);
+    box-shadow: 0 2px 6px rgba(0,0,0,.14);
+    z-index: 20;
+}
+nav ul li .submenu li a {
+    padding: .55rem 1rem;
+    display: block;
+    white-space: nowrap;
+    font-size: 15px;
+}
+/* show submenu when its parent <li> has .open */
+nav ul li.dropdown.open > .submenu { display: block; }
+
+ul.submenu > li > a {
+    color: #000000;
+}
+
+ul.submenu > li > a.active {
+    background: none;
+    color: var(--mainColor);
+}
+/* ----- mobile tweaks ----- */
+@media (max-width: 1024px) {
+    /* when the slide‑out menu is visible, keep submenu in flow */
+    nav ul li .submenu {
+        position: static;
+        background: transparent;
+        color: var(--whiteSmoke);
+        box-shadow: none;
+        min-width: 0;
+    }
+    nav ul li .submenu li a {
+        padding-left: 2rem;         /* slight indent so items look nested */
+        font-size: 18px;
+        color: #ffffff;
+    }
+}
+
+/* HOW TO USE THESE UTILITIES
+----------------------------------------------------------
+1. Layout skeleton
+----------------------------------------------------------
+<section class="container full-screen flex-center">
+    <div class="grid grid-2">
+        <article class="card span-2">…</article>
+        <aside   class="card">…</aside>
+        <aside   class="card">…</aside>
+    </div>
+</section>
+
+2. Buttons & theme
+----------------------------------------------------------
+<button class="btn">Primary Action</button>
+
+• Main colour auto-switches when you toggle
+  <body data-theme="red">          (JS handles this)
+
+3. Navbar (desktop + mobile)
+----------------------------------------------------------
+<nav>
+    <div class="container">
+        <label for="click" class="menu-btn"><i class="fas fa-bars"></i></label>
+        <input type="checkbox" id="click">
+        <span class="logo">Game<span>Stop</span></span>
+        <ul>
+            <li><a class="active" href="#home">Home</a></li>
+            …
+        </ul>
+    </div>
+</nav>
+*/
+/*

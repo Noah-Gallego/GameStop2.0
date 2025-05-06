@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+:root {
+    --mainColor: crimson;
+    --black: #000000;
+    --white: #FFFFFF;
+    --whiteSmoke: #C4C3CA;
+    --shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: #1B1B1B;
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--whiteSmoke);
+    flex-direction: column;
+    letter-spacing: 1px;
+}
+
+/* CARD WRAPPER */
+.logout-card {
+    background-color: rgba(255, 255, 255, 0.05); /* slight transparent white */
+    padding: 10vh 30vw;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    text-align: center;
+}
+
+.logout-container {
+    text-align: center;
+    width: max-content;
+}
+
+.logout-icon {
+    font-size: 80px;
+    color: var(--mainColor);
+    margin-bottom: 20px;
+}
+
+.logout-text {
+    font-size: 24px;
+    color: var(--whiteSmoke);
+    margin-top: 10px;
+}

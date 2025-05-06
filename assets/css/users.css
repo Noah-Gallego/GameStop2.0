@@ -1,0 +1,106 @@
+/* =========================================================
+   USERS.CSS  ·  People Finder Page
+   Desktop first · two responsive steps (768px, 480px)
+   ======================================================= */
+
+/* ---------- 1. Core Card + Layout ---------- */
+.card{
+    background:#f1f1f1;
+    padding:1.25rem;
+    margin-top:1.25rem;
+    border-radius:8px;
+    box-shadow:0 2px 6px rgba(0,0,0,.05);
+}
+
+/* Banner */
+.welcome-card h1{font-size:1.75rem;margin-bottom:.25rem;}
+.icon-pink{color:#d63384;margin-right:.5rem;}
+
+/* Filter bar */
+.filters{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:1rem;
+    padding:1rem;
+}
+.search-box{
+    display:flex;
+    align-items:center;
+}
+.search-box input{
+    padding:.5rem;
+    margin-left:.5rem;
+    border:1px solid #ccc;
+    border-radius:4px;
+}
+
+/* ---------- 2. Result Card ---------- */
+.games-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1rem;
+    margin-top:.75rem;
+    border-radius:8px;
+    box-shadow:0 0 6px 0 #5b21b6 !important;
+    transition:background .2s, transform .2s;
+}
+.games-card:hover{
+    background:#f9f9f9;
+    transform:translateY(-2px);
+}
+.games-left{display:flex;align-items:center;gap:.75rem;}
+
+/* Scalable username / e‑mail */
+.user-text{
+    font-size:1rem;
+    line-height:1.25;
+    max-width:100%;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    word-break:break-all;
+    display:block;
+}
+
+/* ---------- 3. Utility ---------- */
+.text-bold{font-weight:bold;}
+.icon-left{color:#5b21b6;margin-right:.25rem;vertical-align:middle;}
+.card-link{
+    text-decoration:none;
+    color:inherit;
+    display:block;
+    cursor:pointer;
+}
+.card-link:hover .games-card{background:#f2f2f2;}
+
+/* =========================================================
+   4. Responsive
+   ======================================================= */
+
+/* ----- 4.1 ≤ 768px (tablets) ----- */
+@media (max-width:768px){
+    /* stack filters */
+    .filters{flex-direction:column;padding:.75rem;}
+    .search-box{width:100%;}
+    .search-box input{width:100%;margin:.5rem 0 0;}
+
+    /* shrink text */
+    .user-text{font-size:.9rem;}
+}
+
+/* ----- 4.2 ≤ 480px (phones) ----- */
+@media (max-width:480px){
+    /* vertical cards */
+    .games-card{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:.75rem;
+    }
+    .games-left{flex-direction:column;align-items:center;text-align:center;}
+    .games-left img,.games-left svg{max-width:80%;height:auto;margin-bottom:.5rem;}
+
+    /* smaller text */
+    .user-text{font-size:.8rem;}
+}

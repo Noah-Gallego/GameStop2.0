@@ -1,0 +1,312 @@
+/* ─────────── General Card Layout ─────────── */
+.card {
+    background: #f1f1f1;
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+.black-div {
+    color: #e7c7c7;
+    background: rgba(0, 0, 0, 0.50);
+}
+
+/* ─────────── Welcome Banner ─────────── */
+.welcome-card h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+}
+.icon-pink {
+    color: #d63384;
+    margin-right: 0.5rem;
+}
+
+/* ─────────── Filter Section Layout ─────────── */
+.filters {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+/* Search box aligned horizontally */
+.search-box {
+    display: flex;
+    align-items: center;
+}
+.search-box input {
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+/* Filter box container */
+.status-box {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+.status-box legend {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    padding: 0;
+}
+
+/* Shared sub-group layout inside filters */
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* ─────────── Global Priority Filter Dropdown ─────────── */
+.status-box select {
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #5b21b6;
+    background-color: white;
+    color: #333;
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease;
+}
+.status-box select:focus {
+    border-color: #9f7aea;
+    outline: none;
+    box-shadow: 0 0 4px #5b21b6;
+}
+
+/* ─────────── Wishlist Item Card ─────────── */
+.wishlist-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 0.75rem;
+    box-shadow: 0 0 6px #5b21b6;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+.wishlist-card:hover {
+    background: #f9f9f9;
+    transform: translateY(-2px);
+}
+.wishlist-left {
+    flex: 0.5;
+    display: grid;
+    align-items: center;
+    gap: 0.75rem;
+    word-break: break-word;
+}
+.title-block {
+    text-align: left;
+}
+.game-title {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* ─────────── Styled Priority Dropdown ─────────── */
+.priority-box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+.priority-label {
+    font-weight: 600;
+    color: #333;
+}
+
+/* remove browser default arrow */
+.priority-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #efe9e9;
+    /* background: linear-gradient(135deg, #5f27cdbd 0%, #8e2de27a 100%); */
+    border: 1px solid #8e2de2;
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    line-height: 1.25;
+    padding: 0.4rem 2.25rem 0.4rem 0.75rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    min-width: 160px;
+    transition: filter 0.25s ease;
+}
+
+/* hide default dropdown arrow in IE */
+.priority-select::-ms-expand { display: none; }
+
+/* hover & focus */
+.priority-select:hover { filter: brightness(1.1); }
+.priority-select:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.25);
+}
+
+/* custom SVG arrow */
+.priority-box::after {
+    content: "";
+    position: absolute;
+    right: 0.85rem;
+    top: 50%;
+    width: 0.6rem;
+    height: 0.35rem;
+    background: url("data:image/svg+xml,%3csvg viewBox='0 0 120 70' xmlns='http://www.w3.org/2000/svg'%3e%3cpolyline points='10,10 60,60 110,10' stroke='%23ffffff' stroke-width='15' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e") no-repeat center/100% 100%;
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+.p-1
+{
+    color: #e61a1a !important;
+}
+.p-2
+{
+    color: #e66f1a !important;
+}
+.p-3
+{
+    color: #e6c51a !important;
+}
+/* ─────────── Delete Icon & Actions ─────────── */
+.wishlist-actions {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+}
+.delete-icon {
+    color: #e3342f;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+.delete-icon:hover {
+    color: #c53030;
+}
+
+/* ─────────── Utility Classes ─────────── */
+.text-center { text-align: center; }
+.text-bold   { font-weight: bold; }
+.flex-center { display: flex; align-items: center; }
+.flex-between{ display: flex; justify-content: space-between; align-items: center; }
+.mt-1        { margin-top: 1rem; }
+
+/* ─────── Responsive / Mobile-Friendly ─────── */
+
+/* 1) Global container padding on small screens */
+@media (max-width: 768px) {
+    /* give the page edges some breathing room */
+    main.container {
+      padding: 0 1rem;
+    }
+  
+    /* Filters stack vertically */
+    .filters {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  
+    /* Make global priority filter and search full-width */
+    .search-box,
+    .status-box {
+      width: 100%;
+    }
+  
+    .search-box input {
+      width: 100%;
+      margin-left: 0;
+      margin-top: 0.5rem;
+    }
+  
+    .status-box select {
+      width: 100%;
+    }
+}
+  
+/* 2) Wishlist cards stack their sections vertically */
+@media (max-width: 600px) {
+    .wishlist-card {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0.75rem;
+    }
+  
+    .wishlist-left,
+    .wishlist-meta,
+    .wishlist-actions {
+      width: 100%;
+      margin-bottom: 0.75rem;
+    }
+  
+    .wishlist-actions {
+      justify-content: flex-end;
+    }
+}
+  
+/* 3) Increase tap-target size and font readability */
+@media (max-width: 480px) {
+    .game-title {
+      font-size: 1.1rem;
+    }
+  
+    .priority-select {
+        font-size: 1rem;
+        padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+        min-width: 100%;
+    }
+  
+    .delete-icon {
+      font-size: 1.4rem;
+    }
+  
+    .search-box input {
+      font-size: 1rem;
+    }
+}
+
+/* ─── Mobile-Friendly Priority Select ─── */
+
+/* On narrow viewports, make the priority box stack vertically */
+@media (max-width: 600px) {
+    .priority-box {
+        flex-direction: column;
+        align-items: flex-start;  /* label on top, select below */
+        gap: 0.25rem;
+    }
+  
+    .priority-label {
+        font-size: 1rem;          /* slightly bigger label */
+    }
+  
+    .priority-select {
+        /* full width, easier to tap */
+        width: 100%;
+        min-width: auto;
+        font-size: 1rem;          /* larger text */
+        padding: 0.6rem 0.75rem;   /* taller hit area */
+        margin: 0;                 /* remove left margin */
+    }
+}
+  
+/* And on very small phones, boost the tap target even more */
+@media (max-width: 400px) {
+    .priority-select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        padding: 0.8rem 0.75rem;
+    }
+}
+  
+  

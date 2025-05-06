@@ -1,0 +1,111 @@
+/* live_search.css */
+
+#live-search {
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+/* Form layout: stack on mobile, row on wider screens */
+#live-search .search-group {
+    margin-bottom: 1rem;
+}
+
+/* Label text */
+#live-search label {
+    font-size: 1rem;
+    color: #e0e0e0;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+/* Both GET and POST inputs */
+#live-search input[type="text"] {
+    padding: 0.4rem 0.6rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 300px;
+    background: rgba(255,255,255,0.1);
+    color: #e0e0e0;
+    transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+#live-search input[type="text"]:focus {
+    outline: none;
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0 0 0 2px rgba(0,212,255,0.6);
+}
+
+/* Results containers share the same grid styling */
+#results-post
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Section headings for clarity */
+#results-post::before {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #00d4ff;
+    margin-bottom: 0.5rem;
+}
+
+
+
+/* Result “cards” */
+.game-item {
+    background: rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: 
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      background 0.3s ease;
+    text-align: center;
+}
+
+.game-item:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+/* Image styling inside card */
+.game-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto 0.5rem;
+}
+
+/* Fallback text styling */
+.game-item {
+    color: #343131;
+    font-weight: 500;
+}
+
+/* Link inside card */
+.game-item a {
+    color: #00d4ff;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+    word-break: break-word;
+}
+
+.game-item a:focus,
+.game-item a:active {
+    color: #f1c40f;
+    outline: none;
+}
