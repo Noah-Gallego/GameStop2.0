@@ -1,0 +1,123 @@
+.card {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.filters .search-box input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 250px;
+}
+
+.filters .status-box {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.filters .btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filters .btn:hover {
+    background-color: #0056b3;
+}
+
+.results h2 {
+    margin-bottom: 20px;
+}
+
+.trade-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 equal-width columns */
+    gap: 10px;
+    align-items: center;
+    background: #f9f9fb;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.trade-row span {
+    display: block;
+    word-break: break-word;
+}
+
+.trade-row .game.sent {
+    font-weight: bold;
+    grid-column: span 2; 
+}
+
+.trade-row .game.recv {
+    font-weight: bold;
+    grid-column: span 2;
+}
+
+.trade-row .partner,
+.trade-row .license,
+.trade-row .state,
+.trade-row .completed {
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.trade-row .state {
+    background-color: #6c757d;
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.trade-row .license {
+    font-family: monospace;
+    background-color: #e9ecef;
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    text-align: center;
+}
+
+.trade-row .completed {
+    color: #666;
+    text-align: right;
+    grid-column: span 4; 
+}
+
+@media (max-width: 768px) {
+    .trade-row {
+        grid-template-columns: 1fr 1fr;
+    }
+    .trade-row .completed {
+        grid-column: span 2;
+        text-align: left;
+    }
+}
