@@ -6,8 +6,12 @@ if (isset($_SESSION['user_id'])) {
     header("Location: dashboard.php");
     exit();
 }
+$error = '';
+$success = '';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    /* ---------- SIGN-UP ---------- */
     if (isset($_POST['SignUp'])) {
         $result = registerUser(
             $_POST['fname'],
@@ -16,15 +20,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST['password']
         );
 
-        unset($_POST['SignUp']);
-    } elseif (isset($_POST['Login'])) {
+        if ($result['success']) {
+            $success = 'Account created! You can now log in.';
+        } else {
+            $error = $result['error'];
+        }
+    }
+
+    /* ---------- LOGIN ---------- */
+    if (isset($_POST['Login'])) {
         $result = loginUser(
             $_POST['email'] ?? '',
             $_POST['password'] ?? ''
         );
 
         if ($result['success']) {
-            header("Location: dashboard.php");
+            header('Location: dashboard.php');
             exit();
         } else {
             $error = $result['error'];
@@ -36,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -125,8 +137,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                         </div>
                     </div>
-                    <?php if (!empty($error)): ?>
-                        <p class="text-center" style="color:red; margin-top:10px;"> <?= htmlspecialchars($error) ?> </p>
+                    <?php if ($error): ?>
+                        <p class="text-center text-danger mt-1"><?= htmlspecialchars($error) ?></p>
+                    <?php elseif ($success): ?>
+                        <p class="text-center text-success mt-1"><?= htmlspecialchars($success) ?></p>
                     <?php endif; ?>
                 </div>
             </div>
