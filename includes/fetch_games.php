@@ -14,7 +14,7 @@ $uid    = (int)$_SESSION['uid'];
 $search = trim($_POST['search_data'] ?? '');
 
 $sql = <<<SQL
-SELECT g.Title, g.Image, COUNT(h.License) AS copies
+SELECT g.Title, g.Image, g.GID as gid, COUNT(h.License) AS copies
 FROM   Games g
 JOIN   Has   h ON h.GID = g.GID
 WHERE  h.UID = :uid

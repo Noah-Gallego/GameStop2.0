@@ -5,7 +5,7 @@ require_once ('includes/auth.php');
 if (isset($_SESSION['user_id'])) {
     header("Location: dashboard.php");
     exit();
-} 
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['SignUp'])) {
@@ -28,6 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         } else {
             $error = $result['error'];
+
+            if (strpos($error, 'banned') !== false) {
+                header('Location: banned.php');
+                exit();
+            }
         }
     }
 }

@@ -30,7 +30,8 @@ function validateOneOf(...$pairs)
     $allInvalid = true;
     $invalidNames = [];
 
-    foreach ($pairs as [$value, $name]) {
+    foreach ($pairs as [$value, $name])
+    {
         if ($value)
         {
             $allInvalid = false;

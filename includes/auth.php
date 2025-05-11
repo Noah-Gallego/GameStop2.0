@@ -12,7 +12,7 @@ function valid_email(string $e): bool
     return filter_var($e, FILTER_VALIDATE_EMAIL);
 }
 
-function strong_pwd(string $p): bool
+function strong_pwd(string $p)
 {
     /* ≥8 chars, ≥1 digit, ≥1 letter, ≥1 non-alnum (NO whitespace) */
     return preg_match('/^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/', $p);
@@ -87,6 +87,8 @@ function registerUser(string $fn, string $ln, string $email, string $pwd): array
 /* ---------- login ---------- */
 function loginUser(string $email, string $pwd): array
 {
+    $Admin = ["crodriguez","ngallego", "olorentzena", "tbywater", "ntoothman"];
+    
     if (session_status() !== PHP_SESSION_ACTIVE) session_start();
 
     $email = strtolower(clean($email));
@@ -96,10 +98,14 @@ function loginUser(string $email, string $pwd): array
         return ['success'=>false,'error'=>'Invalid e-mail'];
 
     $db  = get_pdo_connection();
-    $sql = 'SELECT UID,Email,Password FROM Users WHERE Email = ?';
+    $sql = 'SELECT UID, Email, Password, IsBanned FROM Users WHERE Email = ?';
     $st  = $db->prepare($sql);
     $st->execute([$email]);
     $row = $st->fetch(PDO::FETCH_ASSOC);
+
+    if ($row && $row['IsBanned']) {
+        return ['success' => false, 'error' => 'This account has been banned.'];
+    }
 
     if (!$row || !password_verify($pwd, $row['Password']))
         return ['success'=>false,'error'=>'Incorrect credentials'];
@@ -115,5 +121,8 @@ function loginUser(string $email, string $pwd): array
     // $_SESSION['logged_in'] = true;
     $_SESSION['uid']       = $row['UID'];
     $_SESSION['username']  = username_from_email($row['Email']);
+    if (in_array($_SESSION['username'], $Admin))
+        $_SESSION['admin'] = true;
+
     return ['success'=>true];
 }

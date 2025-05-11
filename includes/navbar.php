@@ -2,6 +2,7 @@
 /* navbar.php – GameStop 2.0 reusable nav */
 $current = basename($_SERVER['PHP_SELF'], '.php');
 $logged  = isset($_SESSION['uid'], $_SESSION['username']);
+$admin = isset($_SESSION['admin']);
 ?>
 
 <nav class="navbar">
@@ -50,14 +51,35 @@ $logged  = isset($_SESSION['uid'], $_SESSION['username']);
 
           <!-- hidden menu -->
           <ul class="submenu">
-            <li><a href="dashboard.php"
-                   class="<?= $current=='dashboard'?'active':'' ?>">Dashboard</a></li>
-            <li><a href="inventory.php"
-                   class="<?= $current=='inventory'?'active':'' ?>">Inventory</a></li>
-            <li><a href="trades.php"
-                   class="<?= $current=='trades'?'active':'' ?>">Trades</a></li>
-            <li><a href="wishlist.php"
-                   class="<?= $current=='wishlist'?'active':'' ?>">Wishlist</a></li>
+            <li>
+              <a href="dashboard.php"
+                class="<?= $current=='dashboard'?'active':'' ?>">Dashboard
+              </a>
+            </li>
+            <li>
+              <a href="inventory.php"
+                 class="<?= $current=='inventory'?'active':'' ?>">Inventory
+              </a>
+            </li>
+            <li>
+              <a href="trades.php"
+                class="<?= $current=='trades'?'active':'' ?>">Trades
+              </a>
+            </li>
+            <?php if ($admin): ?>
+              <!-- Only shows if current user is an admin: CR -->
+            <li>
+              <a href="admin_trades.php"
+                  class="<?= $current=='admin_trades'?'active':'' ?>">(A)Trades
+              </a>
+            </li>
+            <?php endif; ?>
+
+            <li>
+              <a href="wishlist.php"
+                   class="<?= $current=='wishlist'?'active':'' ?>">Wishlist
+              </a>
+            </li>
           </ul>
         </li>
 
@@ -159,7 +181,10 @@ $logged  = isset($_SESSION['uid'], $_SESSION['username']);
         if (error) throw new Error(error);
 
         // build HTML for each category
-        let accounts  = buildSection('Users', users, u => `<li>👤 <a href="profile.php?uid=${u.UID}"> ${u.name} </a></li>`);
+        let accounts = buildSection('Users', users, u => {
+            const banIcon = <?= $admin ? "'<i class=\"material-icons\" style=\"color: #dc3545; cursor: pointer; margin-left: 8px; vertical-align: middle; transition: color 0.2s ease;\" title=\"Ban User\" data-uid=\"' + u.UID + '\">gavel</i>'" : "''" ?>;
+            return `<li>👤 <a href="profile.php?uid=${u.UID}">${u.name}</a> ${banIcon}</li>`;
+        });
         let vgames    = buildSection('Games', games, g => {
           // show thumbnail if there’s an image URL
           const img = g.image?.trim()
@@ -223,6 +248,31 @@ $logged  = isset($_SESSION['uid'], $_SESSION['username']);
         list.style.display = isOpen ? 'none' : 'block';
         header.setAttribute('data-open', !isOpen);
       }
+    });
+
+    results.addEventListener('click', e => {
+        if (e.target.matches('.material-icons[title="Ban User"]')) {
+            const userId = e.target.getAttribute('data-uid');
+            if (confirm(`Are you sure you want to ban user ID ${userId}?`)) {
+                fetch('includes/ban_user.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: 'uid=' + encodeURIComponent(userId)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('User banned successfully.');
+                        e.target.style.color = '#000';
+                        e.target.title = 'User Banned';
+                        e.target.innerText = 'block';
+                    } else {
+                        alert('Failed to ban user.');
+                    }
+                })
+                .catch(() => alert('Server error while banning user.'));
+            }
+        }
     });
     
     /* === Dropdown: toggle submenu on click === */

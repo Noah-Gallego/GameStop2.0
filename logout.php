@@ -5,7 +5,10 @@ require_once("includes/config.php");
 unset($_SESSION["logged_in"]);
 unset($_SESSION["person_id"]);
 unset($_SESSION['username']);
-
+// handles if the current user is an admin: CR
+if (isset($_SESSION['admin'])) {
+    unset($_SESSION['admin']);
+}
 function logout() {
     header("refresh:3;url=index.php");
 }
@@ -21,7 +24,7 @@ function logout() {
     <link rel="stylesheet" href="assets/css/logout.css">
     <meta http-equiv="refresh" content="5;url=index.php">
 </head>
-<body onload="countdown(5)">
+<body onload="countdown(2)">
     <div class="logout-card"> <!-- NEW WRAPPER -->
         <div class="logout-container">
             <i class="fas fa-right-from-bracket logout-icon"></i>

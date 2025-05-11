@@ -1,12 +1,22 @@
 /* ---- layout ---- */
 .card {
     color: #e7c7c7;
-    background: rgba(0,0,0,0.65);
+    background: rgba(0,0,0,0.35);
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 6px 14px rgba(0,0,0,0.55);
     margin-bottom: 1.5rem;
 }
+
+.sub-card {
+    color: #e7c7c7;
+    background: rgba(0, 0, 0, .37);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 6px 14px rgb(0 0 0 / 39%);
+    margin-bottom: 1.5rem;
+}
+
 .text-center { text-align:center; }
 .mt-1 { margin-top: 1.5rem; }
 
@@ -35,29 +45,65 @@
 }
 .status-box input { accent-color:#9c27b0; }
 
-/* ---- results list ---- */
+/* ---- results list ------------------------------------------------- */
 .results { overflow-x: auto; }
-.trade-row {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr auto auto;
-    gap: .5rem .75rem;
-    padding: .6rem .4rem;
-    border-bottom: 1px solid #444;
-    align-items: center;
-}
-.trade-row:nth-child(odd) { background: rgba(255,255,255,0.03); }
-.game.sent  { color:#ff7043; }      /* orange */
-.game.recv  { color:#29b6f6; }      /* blue   */
-.partner    { opacity:.85; font-style:italic; }
-.state      { font-weight:600; }
-.arrow      { opacity:.6; }
 
-/* ---- small screens ---- */
-@media (max-width:600px) {
-    .trade-row {
-        grid-template-columns: 1fr;
+/* 5-column grid on desktop
+   ┌─────────────┬──────┬───────────────┬──────────┬─────────┐
+   │   sent game │  ↔️  │ received game │ @partner │ Status  │
+   └─────────────┴──────┴───────────────┴──────────┴─────────┘          */
+.trade-row{
+  display:grid;
+  grid-template-columns: 1fr auto 1fr auto auto;
+  grid-template-areas: "sent arrow recv partner state";
+  gap:.5rem .75rem;
+  padding:.75rem 1rem;
+  border-bottom:1px solid #444;
+  align-items:center;
+}
+
+/* colour & area mapping */
+.game.sent  { color:#ff7043; grid-area:sent;  }     /* orange */
+.game.recv  { color:#29b6f6; grid-area:recv;  }     /* blue   */
+.arrow      { opacity:.6;   grid-area:arrow; }
+.partner    { opacity:.85;  font-style:italic; grid-area:partner; }
+.state      { font-weight:600; grid-area:state; }
+
+.trade-row:nth-child(odd){background:rgba(255,255,255,.03);}
+
+/* ---- small screens (≤ 600 px) ------------------------------------ */
+@media (max-width:600px){
+  
+    .trade-row{
+        /* single column, centred items */
+        grid-template-columns:1fr;
+        grid-template-areas:
+        "sent"
+        "recv"
+        "partner"
+        "state";
         text-align:center;
+        gap:.3rem;
+        padding:1rem .75rem 1.8rem;     /* extra bottom room for buttons */
+        justify-items:center;
     }
-    .arrow { display:none; }
-    .partner, .state { font-size:.85rem; }
+
+    .arrow{
+        display:none;
+        visibility: hidden;
+        }           /* hide ↔️ icon on very narrow   */
+
+    /* always show action buttons & flow under the content */
+    .trade-actions{
+        display:inline-flex !important;
+        position:static;
+        margin-top:.6rem;
+        gap:.5rem;
+    }
+    .trade-actions button{
+        width:2rem;height:2rem;font-size:1.3rem;
+    }
+
+    /* slightly smaller meta text */
+    .partner,.state{ font-size:.9rem; }
 }

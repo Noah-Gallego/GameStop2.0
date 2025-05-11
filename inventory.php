@@ -60,6 +60,9 @@ function getCurrentUserName(): string
         </section>
 
     </main>
+    <div id="license-modal">
+        <div class="modal-content"></div>
+    </div>
 
     <!-- jQuery must be loaded before this -->
     <script>
@@ -75,6 +78,7 @@ function getCurrentUserName(): string
 
                 list.forEach(g => {
                     $('<div>', { class: 'game-item' })
+                        .data('game', g)
                         .append(g.Image
                             ? $('<img>', {
                                 src: g.Image, alt: g.Title, loading: 'lazy'
@@ -87,6 +91,55 @@ function getCurrentUserName(): string
                         .appendTo($results);
                 });
             };
+
+            // Click handler for game-item
+            $(document).on('click', '.game-item', function () {
+                const game = $(this).data('game'); // retrieve the stored game object
+
+                $('#license-modal .modal-content').html(`
+                    <h2>${game.Title}</h2>
+                    <button id="close-modal">Close</button>
+                `);
+
+                $.post('api/has.php', { action: 'read', gid: game.gid })
+                    .done(response => {
+                        // Ensure response is an array and extract the license values
+                        const licenses = Array.isArray(response)
+                            ? response.map(entry => entry.license)
+                            : [];
+
+                        const licenseList = licenses.length > 0
+                            ? licenses.map(lic => `<div>${lic}</div>`).join('')
+                            : '<div>No licenses found.</div>';
+
+                        $('#license-modal .modal-content').html(`
+                            <h2>${game.Title}</h2>
+                            <div>${licenseList}</div>
+                            <button id="close-modal">Close</button>
+                        `);
+
+                        $('#license-modal').css('display', 'flex');
+                    })
+                    .fail(() => {
+                        $('#license-modal .modal-content').html(`
+                            <h2>${game.Title}</h2>
+                            <div>Error loading licenses.</div>
+                            <button id="close-modal">Close</button>
+                        `);
+                    });
+            });
+
+            $('#license-modal').on('click', function (e) {
+                if (!$(e.target).closest('.modal-content').length) {
+                    $(this).css('display', 'none');
+                }
+            });
+
+// Also close when clicking the "Close" button
+            $(document).on('click', '#close-modal', function () {
+                $('#license-modal').css('display', 'none');
+            });
+
 
             /** hit the API */
             const fetchGames = term =>

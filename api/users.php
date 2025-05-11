@@ -29,8 +29,7 @@ try
             if($new_password)
             {
                 $hash = password_hash($new_password, PASSWORD_DEFAULT);
-                $base_query = "UPDATE Users SET Password = :password 
-           WHERE UID = :uid";
+                $base_query = "UPDATE Users SET Password = :password WHERE UID = :uid";
                 $params[':password'] = $hash;
                 $params[':uid'] = $uid;
 
@@ -40,9 +39,8 @@ try
 
             if($new_email)
             {
-                $base_query = "UPDATE Users SET Email = :email 
-           WHERE UID = :uid";
-                $params[':email'] = $email;
+                $base_query = "UPDATE Users SET Email = :email WHERE UID = :uid";
+                $params[':email'] = $new_email;
                 $params[':uid'] = $uid;
 
                 executeQuery($pdo, $base_query, $params);

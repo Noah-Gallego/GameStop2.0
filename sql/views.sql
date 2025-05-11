@@ -8,38 +8,91 @@ DROP VIEW IF EXISTS
     v_user_has_counts,
     v_user_trade_direction,
     v_user_trade_states;
+DROP TABLE IF EXISTS TradeHistory;
 
 /* -------------------------------------------------------------
-   1) Admin-level trade detail
-   Provides a consolidated view of all trades with user identifiers,
-   game titles, trade state, user licenses, and timestamp.
+   REPLACEMENT  ·  TradeHistory + AdminTradeDetails
+   -------------------------------------------------------------
+   1) TradeHistory  – shadow table populated by trg_log_trade_history
+   2) AdminTradeDetails – admin‑only view built *from* TradeHistory
 ------------------------------------------------------------- */
-CREATE VIEW AdminTradeDetails AS
-SELECT 
-    t.TID,
-    SUBSTRING_INDEX(u1.Email, '@', 1) AS User1,       -- Username of initiating user (before the '@')
-    SUBSTRING_INDEX(u2.Email, '@', 1) AS User2,       -- Username of receiving user (before the '@')
-    g1.Title AS User1Game,   -- Title of the game offered by User1
-    g2.Title AS User2Game,   -- Title of the game offered by User2
-    t.State,                 -- Current state of the trade (e.g., Pending, Completed)
-    h1.License AS User1License,  -- License status of User1 for the offered game, if any
-    h2.License AS User2License,  -- License status of User2 for the offered game, if any
-    t.Timestamp              -- Date and time when the trade was initiated
-FROM Trades t
-    JOIN Users u1 
-      ON t.UID1 = u1.UID    -- Link trade to initiating user
-    JOIN Users u2 
-      ON t.UID2 = u2.UID    -- Link trade to receiving user
-    JOIN Games g1 
-      ON t.GID1 = g1.GID    -- Link to game offered by User1
-    JOIN Games g2 
-      ON t.GID2 = g2.GID    -- Link to game offered by User2
-    LEFT JOIN Has h1 
-      ON h1.UID = t.UID1 
-     AND h1.GID = t.GID1    -- Retrieve User1’s license for their game, if recorded
-    LEFT JOIN Has h2 
-      ON h2.UID = t.UID2 
-     AND h2.GID = t.GID2;   -- Retrieve User2’s license for their game, if recorded
+
+/* ----------------------------------------------------------------
+   1) Shadow TABLE : TradeHistory
+   ----------------------------------------------------------------
+   Holds a one‑time snapshot of every trade at completion.
+   Licence codes are stored here (sensitive) and kept out of the
+   public-facing TradesDetails view.
+-----------------------------------------------------------------*/
+
+-- 2) JUSTIFICATION & USAGE
+--    -----------------------
+-- • **Why created:**  
+--   - Administrators need an immutable, searchable ledger of every completed trade, including the actual licence codes exchanged.  
+--   - By sourcing from `TradeHistory` (which only captures trades at completion), we prevent exposing licence data in user-facing views.  
+
+-- • **Where it's used in the project:**  
+--   - It is used to get the general data for AdminTradeDetails 
+--   - Only users with the “admin” role have permission to query this view.
+
+-- 3) SAMPLE QUERY & RESULTS
+--    ------------------------
+-- -- Query to fetch the five most recent completed trades:
+-- SELECT *
+-- FROM AdminTradeDetails
+-- ORDER BY CompletedAt DESC;
+
+
+CREATE TABLE TradeHistory (
+    HistoryID  INT AUTO_INCREMENT PRIMARY KEY,
+    TradeID    INT         NOT NULL,
+    SenderID     INT         NOT NULL,
+    ReceiverID   INT         NOT NULL,
+    GID1       INT,
+    GID2       INT,
+    License1   VARCHAR(50),
+    License2   VARCHAR(50),
+    EventTime  DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (TradeID)  REFERENCES Trades(TID),
+    FOREIGN KEY (SenderID)   REFERENCES Users(UID),
+    FOREIGN KEY (ReceiverID) REFERENCES Users(UID),
+    FOREIGN KEY (GID1)     REFERENCES Games(GID),
+    FOREIGN KEY (GID2)     REFERENCES Games(GID)
+);
+
+/* ----------------------------------------------------------------
+   2) VIEW : AdminTradeDetails  (admin‑only)
+   ----------------------------------------------------------------
+   Exposes the snapshot with human‑readable usernames and titles.
+
+   JUSTIFICATION & USAGE
+      --------------------------------
+      • Justification:
+        - We need an admin‐only ledger of *completed* trades that
+          includes the actual licence codes transferred.  
+        - By sourcing from the immutable `TradeHistory` table, we prevent 
+          public or user-role code from seeing license data.  
+      • Where it’s used:
+        - Displayed in the admin dashboard at `/admin/trades.php`.  
+        - Powers CSV export, search/filter by date, user, or game.  
+        - Only accounts with the “admin” role have permission to query this view.
+-----------------------------------------------------------------*/
+CREATE OR REPLACE VIEW AdminTradeDetails AS
+SELECT
+    th.HistoryID,
+    th.TradeID,
+    SUBSTRING_INDEX(u1.Email,'@',1) AS Sender,
+    SUBSTRING_INDEX(u2.Email,'@',1) AS Receiver,
+    g1.Title                        AS SenderGame,
+    g2.Title                        AS ReceiverGame,
+    th.License1,
+    th.License2,
+    th.EventTime                    AS CompletedAt
+FROM TradeHistory th
+JOIN Users u1  ON u1.UID = th.SenderID
+JOIN Users u2  ON u2.UID = th.ReceiverID
+LEFT JOIN Games g1 ON g1.GID = th.GID1
+LEFT JOIN Games g2 ON g2.GID = th.GID2;
 
 /* -------------------------------------------------------------
    2) Inventory counts per user

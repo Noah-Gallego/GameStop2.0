@@ -6,6 +6,7 @@ if (!isset($_SESSION['username'])) {
     header('Location: access_denied.php');
     exit();
 }
+$admin = isset($_SESSION['admin']);
 
 function getCurrentUserName(): string {
     return ucfirst($_SESSION['username']);

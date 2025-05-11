@@ -254,11 +254,6 @@ nav ul li a.active {
     .search-btn { display: block; }     /* show on mobile */
 }
 
-/* @media (max-width: 542px) {
-    .search-btn { display: block; }     /* show on mobile */
-/* }  */
-
-
 /* =====================================================
    FULL-SCREEN SEARCH OVERLAY
    ----------------------------------------------------- */
@@ -320,15 +315,7 @@ nav ul li a.active {
     overflow-y: auto;
 }
 #overlay-search-results ul { list-style: none; margin: 0; padding: 0; }
-/* #overlay-search-results li {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    padding: 10px;
-    cursor: pointer;
-    border-bottom: 1px solid #eee;
-    justify-content: flex-start;
-} */
+
 #overlay-search-results li {
     display: flex;
     gap: 10px;

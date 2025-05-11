@@ -26,15 +26,23 @@ CREATE TABLE Games (
     PRIMARY KEY (GID)
 );
 
+CREATE TABLE HadGames (
+    UID INT,
+    GID INT,
+    FOREIGN KEY (UID) REFERENCES Users(UID)
+);
+
 -- Recreate Trades table with State as ENUM
 CREATE TABLE Trades (
     TID INT AUTO_INCREMENT,
     UID1 INT NOT NULL,
     UID2 INT NOT NULL,
-    GID1 INT NOT NULL,
-    GID2 INT NOT NULL,
-    State ENUM('Pending', 'Completed', 'Cancelled', 'Failed') NOT NULL,
-    Timestamp DATETIME NOT NULL,
+    GID1 INT,
+    GID2 INT,
+    State ENUM('Pending', 'Completed', 'Cancelled') NOT NULL,
+    Status1 ENUM('Accepted', 'Decline') NOT NULL,
+    Status2 ENUM('Pending', 'Accepted', 'Declined') NOT NULL,
+    Timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (TID),
     FOREIGN KEY (UID1) REFERENCES Users(UID),
     FOREIGN KEY (UID2) REFERENCES Users(UID),

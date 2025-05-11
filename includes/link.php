@@ -13,4 +13,5 @@ $current = basename($_SERVER['SCRIPT_NAME'], '.php');
 ?>
 <!-- global styles / theme -->
 <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/navbar.css">
 <link rel="stylesheet" href='assets/css/<?php echo $current;?>.css'>

@@ -21,8 +21,8 @@ if ($gid === 0) {
 try {
     $pdo = get_pdo_connection();
 
-    $stmt = $pdo->prepare("DELETE FROM Wants WHERE UID = :uid AND GID = :gid");
-    $stmt->execute([':uid' => $uid, ':gid' => $gid]);
+    $stmt = $pdo->prepare('CALL DeleteWant(?, ?)');
+    $stmt->execute([$uid, $gid]);
 
     echo json_encode(['success' => true]);
 } catch (PDOException $e) {

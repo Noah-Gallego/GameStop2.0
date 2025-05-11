@@ -1018,450 +1018,719 @@
     <schema id="325" parent="1" name="gamestop2">
       <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
       <LastIntrospectionLevel>3</LastIntrospectionLevel>
-      <LastIntrospectionLocalTimestamp>2025-05-02.07:43:11</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-05-11.00:31:48</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_general_ci</CollationName>
     </schema>
     <user id="326" parent="1" name="gamestop2">
       <Host>localhost</Host>
     </user>
     <routine id="327" parent="325" name="DeleteUser">
-      <Definer>crodriguez@localhost</Definer>
+      <Definer>gamestop2@localhost</Definer>
       <DetailsLevel>3</DetailsLevel>
       <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>50</SourceTextLength>
     </routine>
-    <routine id="328" parent="325" name="GetMonthlyTradeStats">
-      <Definer>crodriguez@localhost</Definer>
+    <routine id="328" parent="325" name="DeleteWant">
+      <Definer>gamestop2@localhost</Definer>
       <DetailsLevel>3</DetailsLevel>
       <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>66</SourceTextLength>
     </routine>
-    <routine id="329" parent="325" name="GetUserTradeHistory">
-      <Definer>crodriguez@localhost</Definer>
+    <routine id="329" parent="325" name="GetMonthlyTradeStats">
+      <Definer>gamestop2@localhost</Definer>
       <DetailsLevel>3</DetailsLevel>
       <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>180</SourceTextLength>
     </routine>
-    <routine id="330" parent="325" name="InsertUser">
-      <Definer>crodriguez@localhost</Definer>
+    <routine id="330" parent="325" name="GetUserTradeHistory">
+      <Definer>gamestop2@localhost</Definer>
       <DetailsLevel>3</DetailsLevel>
       <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>525</SourceTextLength>
     </routine>
-    <routine id="331" parent="325" name="UpdateUser">
-      <Definer>crodriguez@localhost</Definer>
+    <routine id="331" parent="325" name="InsertUser">
+      <Definer>gamestop2@localhost</Definer>
       <DetailsLevel>3</DetailsLevel>
       <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>129</SourceTextLength>
     </routine>
-    <table id="332" parent="325" name="Games">
+    <routine id="332" parent="325" name="UpdateUser">
+      <Definer>gamestop2@localhost</Definer>
+      <DetailsLevel>3</DetailsLevel>
+      <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>168</SourceTextLength>
+    </routine>
+    <routine id="333" parent="325" name="finalize_trade">
+      <Definer>gamestop2@localhost</Definer>
+      <DetailsLevel>3</DetailsLevel>
+      <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>220</SourceTextLength>
+    </routine>
+    <routine id="334" parent="325" name="sp_add_licence">
+      <Definer>gamestop2@localhost</Definer>
+      <DetailsLevel>3</DetailsLevel>
+      <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>87</SourceTextLength>
+    </routine>
+    <routine id="335" parent="325" name="sp_delete_licence">
+      <Definer>gamestop2@localhost</Definer>
+      <DetailsLevel>3</DetailsLevel>
+      <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>60</SourceTextLength>
+    </routine>
+    <routine id="336" parent="325" name="sp_monthly_trade_stats">
+      <Definer>gamestop2@localhost</Definer>
+      <DetailsLevel>3</DetailsLevel>
+      <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>394</SourceTextLength>
+    </routine>
+    <routine id="337" parent="325" name="sp_update_license_code">
+      <Definer>gamestop2@localhost</Definer>
+      <DetailsLevel>3</DetailsLevel>
+      <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>79</SourceTextLength>
+    </routine>
+    <table id="338" parent="325" name="Games">
       <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <Options>`ENCRYPTION_KEY_ID`
 100</Options>
       <CollationName>utf8mb4_general_ci</CollationName>
     </table>
-    <table id="333" parent="325" name="Has">
+    <table id="339" parent="325" name="HadGames">
       <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <Options>`ENCRYPTION_KEY_ID`
 100</Options>
       <CollationName>utf8mb4_general_ci</CollationName>
     </table>
-    <table id="334" parent="325" name="TradeHistory">
+    <table id="340" parent="325" name="Has">
       <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <Options>`ENCRYPTION_KEY_ID`
 100</Options>
       <CollationName>utf8mb4_general_ci</CollationName>
     </table>
-    <table id="335" parent="325" name="Trades">
+    <table id="341" parent="325" name="TradeHistory">
       <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <Options>`ENCRYPTION_KEY_ID`
 100</Options>
       <CollationName>utf8mb4_general_ci</CollationName>
     </table>
-    <table id="336" parent="325" name="Users">
+    <table id="342" parent="325" name="Trades">
       <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <Options>`ENCRYPTION_KEY_ID`
 100</Options>
       <CollationName>utf8mb4_general_ci</CollationName>
     </table>
-    <table id="337" parent="325" name="Wants">
+    <table id="343" parent="325" name="Users">
       <DetailsLevel>3</DetailsLevel>
       <Engine>InnoDB</Engine>
       <Options>`ENCRYPTION_KEY_ID`
 100</Options>
       <CollationName>utf8mb4_general_ci</CollationName>
     </table>
-    <view id="338" parent="325" name="AdminTradeDetails">
-      <Definer>crodriguez@localhost</Definer>
+    <table id="344" parent="325" name="Wants">
       <DetailsLevel>3</DetailsLevel>
-      <SourceTextLength>747</SourceTextLength>
+      <Engine>InnoDB</Engine>
+      <Options>`ENCRYPTION_KEY_ID`
+100</Options>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <view id="345" parent="325" name="AdminTradeDetails">
+      <Definer>gamestop2@localhost</Definer>
+      <DetailsLevel>3</DetailsLevel>
+      <SourceTextLength>619</SourceTextLength>
     </view>
-    <argument id="339" parent="327" name="p_UID">
+    <view id="346" parent="325" name="v_user_has_counts">
+      <Definer>gamestop2@localhost</Definer>
+      <DetailsLevel>3</DetailsLevel>
+      <SourceTextLength>198</SourceTextLength>
+    </view>
+    <view id="347" parent="325" name="v_user_trade_direction">
+      <Definer>gamestop2@localhost</Definer>
+      <DetailsLevel>3</DetailsLevel>
+      <SourceTextLength>302</SourceTextLength>
+    </view>
+    <view id="348" parent="325" name="v_user_trade_states">
+      <Definer>gamestop2@localhost</Definer>
+      <DetailsLevel>3</DetailsLevel>
+      <SourceTextLength>338</SourceTextLength>
+    </view>
+    <argument id="349" parent="327" name="p_UID">
       <Position>1</Position>
       <StoredType>int(11)|0s</StoredType>
     </argument>
-    <argument id="340" parent="328" name="p_StartDate">
+    <argument id="350" parent="328" name="i_uid">
+      <Position>1</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </argument>
+    <argument id="351" parent="328" name="i_gid">
+      <Position>2</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </argument>
+    <argument id="352" parent="329" name="p_StartDate">
       <Position>1</Position>
       <StoredType>date|0s</StoredType>
     </argument>
-    <argument id="341" parent="328" name="p_EndDate">
+    <argument id="353" parent="329" name="p_EndDate">
       <Position>2</Position>
       <StoredType>date|0s</StoredType>
     </argument>
-    <argument id="342" parent="329" name="p_UID">
+    <argument id="354" parent="330" name="p_UID">
       <Position>1</Position>
       <StoredType>int(11)|0s</StoredType>
     </argument>
-    <argument id="343" parent="330" name="p_Email">
+    <argument id="355" parent="331" name="p_Email">
       <Position>1</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </argument>
-    <argument id="344" parent="330" name="p_Password">
+    <argument id="356" parent="331" name="p_Password">
       <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </argument>
-    <argument id="345" parent="330" name="p_FirstName">
+    <argument id="357" parent="331" name="p_FirstName">
       <Position>3</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </argument>
-    <argument id="346" parent="330" name="p_LastName">
+    <argument id="358" parent="331" name="p_LastName">
       <Position>4</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </argument>
-    <argument id="347" parent="331" name="p_UID">
+    <argument id="359" parent="332" name="p_UID">
       <Position>1</Position>
       <StoredType>int(11)|0s</StoredType>
     </argument>
-    <argument id="348" parent="331" name="p_Email">
+    <argument id="360" parent="332" name="p_Email">
       <Position>2</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </argument>
-    <argument id="349" parent="331" name="p_Password">
+    <argument id="361" parent="332" name="p_Password">
       <Position>3</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </argument>
-    <argument id="350" parent="331" name="p_FirstName">
+    <argument id="362" parent="332" name="p_FirstName">
       <Position>4</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </argument>
-    <argument id="351" parent="331" name="p_LastName">
+    <argument id="363" parent="332" name="p_LastName">
       <Position>5</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </argument>
-    <column id="352" parent="332" name="GID">
-      <AutoIncrement>10000000</AutoIncrement>
+    <argument id="364" parent="333" name="p_tid">
+      <Position>1</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </argument>
+    <argument id="365" parent="334" name="p_license">
+      <Position>1</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </argument>
+    <argument id="366" parent="334" name="p_uid">
+      <Position>2</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </argument>
+    <argument id="367" parent="334" name="p_gid">
+      <Position>3</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </argument>
+    <argument id="368" parent="335" name="p_license">
+      <Position>1</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </argument>
+    <argument id="369" parent="336" name="p_start">
+      <Position>1</Position>
+      <StoredType>date|0s</StoredType>
+    </argument>
+    <argument id="370" parent="336" name="p_end">
+      <Position>2</Position>
+      <StoredType>date|0s</StoredType>
+    </argument>
+    <argument id="371" parent="337" name="p_old">
+      <Position>1</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </argument>
+    <argument id="372" parent="337" name="p_new">
+      <Position>2</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </argument>
+    <column id="373" parent="338" name="GID">
+      <AutoIncrement>10000001</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="353" parent="332" name="Title">
+    <column id="374" parent="338" name="Title">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="354" parent="332" name="Image">
+    <column id="375" parent="338" name="Image">
       <Position>3</Position>
       <StoredType>varchar(512)|0s</StoredType>
     </column>
-    <index id="355" parent="332" name="PRIMARY">
+    <index id="376" parent="338" name="PRIMARY">
       <ColNames>GID</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="356" parent="332" name="PRIMARY">
+    <key id="377" parent="338" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="357" parent="333" name="License">
-      <NotNull>1</NotNull>
+    <column id="378" parent="339" name="GID">
       <Position>1</Position>
-      <StoredType>varchar(50)|0s</StoredType>
+      <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="358" parent="333" name="UID">
-      <NotNull>1</NotNull>
+    <column id="379" parent="339" name="UID">
       <Position>2</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="359" parent="333" name="GID">
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-      <StoredType>int(11)|0s</StoredType>
-    </column>
-    <foreign-key id="360" parent="333" name="Has_ibfk_1">
+    <foreign-key id="380" parent="339" name="UID">
       <ColNames>UID</ColNames>
       <RefColNames>UID</RefColNames>
       <RefTableName>Users</RefTableName>
     </foreign-key>
-    <foreign-key id="361" parent="333" name="Has_ibfk_2">
+    <index id="381" parent="339" name="UID">
+      <ColNames>UID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <column id="382" parent="340" name="License">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <column id="383" parent="340" name="UID">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="384" parent="340" name="GID">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <foreign-key id="385" parent="340" name="Has_ibfk_1">
+      <ColNames>UID</ColNames>
+      <RefColNames>UID</RefColNames>
+      <RefTableName>Users</RefTableName>
+    </foreign-key>
+    <foreign-key id="386" parent="340" name="Has_ibfk_2">
       <ColNames>GID</ColNames>
       <RefColNames>GID</RefColNames>
       <RefTableName>Games</RefTableName>
     </foreign-key>
-    <index id="362" parent="333" name="PRIMARY">
+    <index id="387" parent="340" name="PRIMARY">
       <ColNames>License</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="363" parent="333" name="UID">
+    <index id="388" parent="340" name="UID">
       <ColNames>UID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="364" parent="333" name="GID">
+    <index id="389" parent="340" name="GID">
       <ColNames>GID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="365" parent="333" name="PRIMARY">
+    <key id="390" parent="340" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="366" parent="334" name="HistoryID">
-      <AutoIncrement>1</AutoIncrement>
+    <column id="391" parent="341" name="HistoryID">
+      <AutoIncrement>14</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="367" parent="334" name="TradeID">
+    <column id="392" parent="341" name="TradeID">
+      <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="368" parent="334" name="Action">
+    <column id="393" parent="341" name="SenderID">
+      <NotNull>1</NotNull>
       <Position>3</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="394" parent="341" name="ReceiverID">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="395" parent="341" name="GID1">
+      <Position>5</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="396" parent="341" name="GID2">
+      <Position>6</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="397" parent="341" name="License1">
+      <Position>7</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="369" parent="334" name="ActionTimestamp">
+    <column id="398" parent="341" name="License2">
+      <Position>8</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <column id="399" parent="341" name="EventTime">
       <DefaultExpression>current_timestamp()</DefaultExpression>
-      <Position>4</Position>
+      <NotNull>1</NotNull>
+      <Position>9</Position>
       <StoredType>datetime|0s</StoredType>
     </column>
-    <index id="370" parent="334" name="PRIMARY">
+    <column id="400" parent="341" name="State">
+      <DefaultExpression>&apos;Completed&apos;</DefaultExpression>
+      <Position>10</Position>
+      <StoredType>varchar(20)|0s</StoredType>
+    </column>
+    <foreign-key id="401" parent="341" name="TradeHistory_ibfk_1">
+      <ColNames>TradeID</ColNames>
+      <RefColNames>TID</RefColNames>
+      <RefTableName>Trades</RefTableName>
+    </foreign-key>
+    <foreign-key id="402" parent="341" name="TradeHistory_ibfk_2">
+      <ColNames>SenderID</ColNames>
+      <RefColNames>UID</RefColNames>
+      <RefTableName>Users</RefTableName>
+    </foreign-key>
+    <foreign-key id="403" parent="341" name="TradeHistory_ibfk_3">
+      <ColNames>ReceiverID</ColNames>
+      <RefColNames>UID</RefColNames>
+      <RefTableName>Users</RefTableName>
+    </foreign-key>
+    <foreign-key id="404" parent="341" name="TradeHistory_ibfk_4">
+      <ColNames>GID1</ColNames>
+      <RefColNames>GID</RefColNames>
+      <RefTableName>Games</RefTableName>
+    </foreign-key>
+    <foreign-key id="405" parent="341" name="TradeHistory_ibfk_5">
+      <ColNames>GID2</ColNames>
+      <RefColNames>GID</RefColNames>
+      <RefTableName>Games</RefTableName>
+    </foreign-key>
+    <index id="406" parent="341" name="PRIMARY">
       <ColNames>HistoryID</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="371" parent="334" name="PRIMARY">
+    <index id="407" parent="341" name="TradeID">
+      <ColNames>TradeID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="408" parent="341" name="SenderID">
+      <ColNames>SenderID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="409" parent="341" name="ReceiverID">
+      <ColNames>ReceiverID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="410" parent="341" name="GID1">
+      <ColNames>GID1</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="411" parent="341" name="GID2">
+      <ColNames>GID2</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="412" parent="341" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="372" parent="335" name="TID">
-      <AutoIncrement>21</AutoIncrement>
+    <column id="413" parent="342" name="TID">
+      <AutoIncrement>70</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="373" parent="335" name="UID1">
+    <column id="414" parent="342" name="UID1">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="374" parent="335" name="UID2">
+    <column id="415" parent="342" name="UID2">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="375" parent="335" name="GID1">
+    <column id="416" parent="342" name="GID1">
       <Position>4</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="376" parent="335" name="GID2">
+    <column id="417" parent="342" name="GID2">
       <Position>5</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="377" parent="335" name="State">
+    <column id="418" parent="342" name="State">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StoredType>enum(&apos;Pending&apos;, &apos;Completed&apos;, &apos;Cancelled&apos;)|0e</StoredType>
     </column>
-    <column id="378" parent="335" name="Timestamp">
+    <column id="419" parent="342" name="Timestamp">
+      <DefaultExpression>current_timestamp()</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StoredType>datetime|0s</StoredType>
     </column>
-    <column id="379" parent="335" name="Status1">
+    <column id="420" parent="342" name="Status1">
       <DefaultExpression>&apos;Accepted&apos;</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>8</Position>
       <StoredType>enum(&apos;Accepted&apos;, &apos;Declined&apos;)|0e</StoredType>
     </column>
-    <column id="380" parent="335" name="Status2">
+    <column id="421" parent="342" name="Status2">
       <DefaultExpression>&apos;Pending&apos;</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>9</Position>
       <StoredType>enum(&apos;Pending&apos;, &apos;Accepted&apos;, &apos;Declined&apos;)|0e</StoredType>
     </column>
-    <foreign-key id="381" parent="335" name="Trades_ibfk_1">
+    <foreign-key id="422" parent="342" name="Trades_ibfk_1">
       <ColNames>UID1</ColNames>
       <RefColNames>UID</RefColNames>
       <RefTableName>Users</RefTableName>
     </foreign-key>
-    <foreign-key id="382" parent="335" name="Trades_ibfk_2">
+    <foreign-key id="423" parent="342" name="Trades_ibfk_2">
       <ColNames>UID2</ColNames>
       <RefColNames>UID</RefColNames>
       <RefTableName>Users</RefTableName>
     </foreign-key>
-    <foreign-key id="383" parent="335" name="Trades_ibfk_3">
+    <foreign-key id="424" parent="342" name="Trades_ibfk_3">
       <ColNames>GID1</ColNames>
       <RefColNames>GID</RefColNames>
       <RefTableName>Games</RefTableName>
     </foreign-key>
-    <foreign-key id="384" parent="335" name="Trades_ibfk_4">
+    <foreign-key id="425" parent="342" name="Trades_ibfk_4">
       <ColNames>GID2</ColNames>
       <RefColNames>GID</RefColNames>
       <RefTableName>Games</RefTableName>
     </foreign-key>
-    <index id="385" parent="335" name="PRIMARY">
+    <index id="426" parent="342" name="PRIMARY">
       <ColNames>TID</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="386" parent="335" name="UID1">
+    <index id="427" parent="342" name="UID1">
       <ColNames>UID1</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="387" parent="335" name="UID2">
+    <index id="428" parent="342" name="UID2">
       <ColNames>UID2</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="388" parent="335" name="GID1">
+    <index id="429" parent="342" name="GID1">
       <ColNames>GID1</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="389" parent="335" name="GID2">
+    <index id="430" parent="342" name="GID2">
       <ColNames>GID2</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="390" parent="335" name="PRIMARY">
+    <key id="431" parent="342" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="391" parent="336" name="UID">
-      <AutoIncrement>33</AutoIncrement>
+    <trigger id="432" parent="342" name="trade_touch_timestamp">
+      <Definer>gamestop2@localhost</Definer>
+      <Events>U</Events>
+      <SourceTextLength>166</SourceTextLength>
+      <Turn>before-row</Turn>
+    </trigger>
+    <trigger id="433" parent="342" name="TradeCompletedTrigger">
+      <Definer>gamestop2@localhost</Definer>
+      <Events>U</Events>
+      <SourceTextLength>1238</SourceTextLength>
+    </trigger>
+    <column id="434" parent="343" name="UID">
+      <AutoIncrement>37</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="392" parent="336" name="Email">
+    <column id="435" parent="343" name="Email">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="393" parent="336" name="Password">
+    <column id="436" parent="343" name="Password">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="394" parent="336" name="FirstName">
+    <column id="437" parent="343" name="FirstName">
       <Position>4</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="395" parent="336" name="LastName">
+    <column id="438" parent="343" name="LastName">
       <Position>5</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <index id="396" parent="336" name="PRIMARY">
+    <column id="439" parent="343" name="IsBanned">
+      <DefaultExpression>0</DefaultExpression>
+      <Position>6</Position>
+      <StoredType>tinyint(1)|0s</StoredType>
+    </column>
+    <index id="440" parent="343" name="PRIMARY">
       <ColNames>UID</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="397" parent="336" name="Email">
+    <index id="441" parent="343" name="Email">
       <ColNames>Email</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="398" parent="336" name="PRIMARY">
+    <key id="442" parent="343" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="399" parent="336" name="Email">
+    <key id="443" parent="343" name="Email">
       <UnderlyingIndexName>Email</UnderlyingIndexName>
     </key>
-    <column id="400" parent="337" name="UID">
+    <column id="444" parent="344" name="UID">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="401" parent="337" name="GID">
+    <column id="445" parent="344" name="GID">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="402" parent="337" name="Date">
+    <column id="446" parent="344" name="Date">
       <Position>3</Position>
       <StoredType>date|0s</StoredType>
     </column>
-    <column id="403" parent="337" name="Priority">
+    <column id="447" parent="344" name="Priority">
       <Position>4</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <foreign-key id="404" parent="337" name="Wants_ibfk_1">
+    <foreign-key id="448" parent="344" name="Wants_ibfk_1">
       <ColNames>UID</ColNames>
       <RefColNames>UID</RefColNames>
       <RefTableName>Users</RefTableName>
     </foreign-key>
-    <foreign-key id="405" parent="337" name="Wants_ibfk_2">
+    <foreign-key id="449" parent="344" name="Wants_ibfk_2">
       <ColNames>GID</ColNames>
       <RefColNames>GID</RefColNames>
       <RefTableName>Games</RefTableName>
     </foreign-key>
-    <index id="406" parent="337" name="PRIMARY">
+    <index id="450" parent="344" name="PRIMARY">
       <ColNames>UID
 GID</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="407" parent="337" name="GID">
+    <index id="451" parent="344" name="GID">
       <ColNames>GID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="408" parent="337" name="PRIMARY">
+    <key id="452" parent="344" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="409" parent="338" name="TID">
+    <trigger id="453" parent="344" name="wants_priority_update">
+      <Definer>gamestop2@localhost</Definer>
+      <Events>U</Events>
+      <SourceTextLength>92</SourceTextLength>
+      <Turn>before-row</Turn>
+    </trigger>
+    <column id="454" parent="345" name="HistoryID">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="410" parent="338" name="User1">
+    <column id="455" parent="345" name="TradeID">
+      <NotNull>1</NotNull>
       <Position>2</Position>
-      <StoredType>varchar(100)|0s</StoredType>
+      <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="411" parent="338" name="User2">
+    <column id="456" parent="345" name="Sender">
       <Position>3</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="412" parent="338" name="User1Game">
-      <NotNull>1</NotNull>
+    <column id="457" parent="345" name="Receiver">
       <Position>4</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="413" parent="338" name="User2Game">
-      <NotNull>1</NotNull>
+    <column id="458" parent="345" name="SenderGame">
       <Position>5</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="414" parent="338" name="State">
-      <NotNull>1</NotNull>
+    <column id="459" parent="345" name="ReceiverGame">
       <Position>6</Position>
-      <StoredType>enum(&apos;Pending&apos;, &apos;Completed&apos;, &apos;Cancelled&apos;, &apos;Failed&apos;)|0e</StoredType>
+      <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="415" parent="338" name="User1License">
+    <column id="460" parent="345" name="License1">
       <Position>7</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="416" parent="338" name="User2License">
+    <column id="461" parent="345" name="License2">
       <Position>8</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="417" parent="338" name="Timestamp">
+    <column id="462" parent="345" name="CompletedAt">
       <NotNull>1</NotNull>
       <Position>9</Position>
       <StoredType>datetime|0s</StoredType>
+    </column>
+    <column id="463" parent="346" name="UID">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="464" parent="346" name="GID">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="465" parent="346" name="Title">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>varchar(100)|0s</StoredType>
+    </column>
+    <column id="466" parent="346" name="cnt">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>bigint(21)|0s</StoredType>
+    </column>
+    <column id="467" parent="347" name="uid">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="468" parent="347" name="label">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>varchar(8)|0s</StoredType>
+    </column>
+    <column id="469" parent="347" name="cnt">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>bigint(21)|0s</StoredType>
+    </column>
+    <column id="470" parent="348" name="uid">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="471" parent="348" name="label">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>varchar(9)|0s</StoredType>
+    </column>
+    <column id="472" parent="348" name="cnt">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>bigint(21)|0s</StoredType>
     </column>
   </database-model>
 </dataSource>
