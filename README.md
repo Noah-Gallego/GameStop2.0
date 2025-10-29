@@ -33,7 +33,7 @@ Built with a focus on real-world database design, user authentication, and dynam
 ## 👥 Group Members
 
 - **Noah Gallego**  
-- **Timathy Redmond**  
+- **Timathy Bywater**  
 - **Christian Rodriguez**
 
 ---
